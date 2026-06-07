@@ -91,4 +91,20 @@ public class No {
     public No getNoDireito() {
         return noDireito;
     }
+
+    public void setNoEsquerdo(No noEsquerdo) {
+        this.noEsquerdo = noEsquerdo;
+    }
+
+    public void setNoDireito(No noDireito) {
+        this.noDireito = noDireito;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
 }

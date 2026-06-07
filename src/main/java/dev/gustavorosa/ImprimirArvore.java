@@ -4,5 +4,6 @@ public enum ImprimirArvore {
     EM_ORDEM,
     POS_ORDEM,
     PRE_ORDEM,
-    EM_NIVEL;
+    EM_NIVEL,
+    DESENHO;
 }

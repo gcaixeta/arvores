@@ -2,20 +2,34 @@ package dev.gustavorosa;
 
 public class Main {
     public static void main(String[] args) {
-        var minhaArvre = new ArvoreBinaria();
+        System.out.println("=== Arvore Binaria ===");
+        Arvore arvoreBinaria = new ArvoreBinaria();
+        demonstrar(arvoreBinaria);
 
-        minhaArvre.inserir(9);
-        minhaArvre.inserir(1);
-        minhaArvre.inserir(2);
-        minhaArvre.inserir(8);
-        minhaArvre.inserir(2);
-        minhaArvre.inserir(3);
+        System.out.println("=== Arvore AVL ===");
+        Arvore arvoreAVL = new ArvoreAVL();
+        demonstrar(arvoreAVL);
+    }
 
-        minhaArvre.imprimeArvore(ImprimirArvore.EM_ORDEM);
-        minhaArvre.imprimeArvore(ImprimirArvore.PRE_ORDEM);
-        minhaArvre.imprimeArvore(ImprimirArvore.POS_ORDEM);
-        minhaArvre.imprimeArvore(ImprimirArvore.EM_NIVEL);
+    private static void demonstrar(Arvore arvore) {
+        int[] valores = {9, 1, 2, 8, 2, 3, 10, 15, -5, 7, 12, -2};
+        for (int v : valores) {
+            arvore.inserir(v);
+            arvore.inserirAleatorio(-20, 20);
+        }
 
-        System.out.println("A arvre tem " + minhaArvre.contagemDeNos() + " nos.");
+        System.out.println("Buscar 8: " + arvore.buscar(8));
+        System.out.println("Buscar 99: " + arvore.buscar(99));
+
+        arvore.remover(2);
+        System.out.println("Buscar 2 apos remover: " + arvore.buscar(2));
+
+        System.out.println("Desenho:");
+        if (arvore instanceof ArvoreBinaria ab) {
+            ab.imprimeArvore(ImprimirArvore.DESENHO);
+        } else if (arvore instanceof ArvoreAVL avl) {
+            avl.imprimeArvore(ImprimirArvore.DESENHO);
+        }
+        System.out.println();
     }
 }
