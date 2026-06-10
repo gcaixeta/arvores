@@ -1,7 +1,5 @@
 package dev.gustavorosa;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 
 public class ArvoreBinaria implements Arvore {
@@ -43,6 +41,35 @@ public class ArvoreBinaria implements Arvore {
         raiz = remover(raiz, valor);
     }
 
+    @Override
+    public void imprime(ImprimirArvore estrategia) {
+        if (raiz != null) {
+            switch (estrategia) {
+                case ImprimirArvore.EM_ORDEM:
+                    raiz.emOrdem();
+                    break;
+                case ImprimirArvore.PRE_ORDEM:
+                    raiz.preOrdem();
+                    break;
+                case ImprimirArvore.POS_ORDEM:
+                    raiz.posOrdem();
+                    break;
+                case ImprimirArvore.EM_NIVEL:
+                    raiz.emNivel();
+                    break;
+                case ImprimirArvore.DESENHO:
+                    desenhar();
+                    break;
+                default:
+                    System.out.println("Nao conheco esse...");
+            }
+            System.out.println();
+        } else {
+            System.out.println("Arvore vazia");
+            System.out.println();
+        }
+    }
+
     private No remover(No no, int valor) {
         if (no == null) return null;
 
@@ -67,34 +94,6 @@ public class ArvoreBinaria implements Arvore {
             atual = atual.getNoEsquerdo();
         }
         return atual;
-    }
-
-    public void imprimeArvore(ImprimirArvore metodo) {
-        if (raiz != null) {
-            switch (metodo) {
-                case ImprimirArvore.EM_ORDEM:
-                    raiz.emOrdem();
-                    break;
-                case ImprimirArvore.PRE_ORDEM:
-                    raiz.preOrdem();
-                    break;
-                case ImprimirArvore.POS_ORDEM:
-                    raiz.posOrdem();
-                    break;
-                case ImprimirArvore.EM_NIVEL:
-                    raiz.emNivel();
-                    break;
-                case ImprimirArvore.DESENHO:
-                    desenhar();
-                    break;
-                default:
-                    System.out.println("Nao conheco esse...");
-            }
-            System.out.println();
-        } else {
-            System.out.println("Arvore vazia");
-            System.out.println();
-        }
     }
 
     public void desenhar() {

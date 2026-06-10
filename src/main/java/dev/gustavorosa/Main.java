@@ -9,13 +9,19 @@ public class Main {
         System.out.println("=== Arvore AVL ===");
         Arvore arvoreAVL = new ArvoreAVL();
         demonstrar(arvoreAVL);
+
+        System.out.println("=== Arvore Red-Black ===");
+        Arvore arvoreRB = new ArvoreRB();
+        demonstrar(arvoreRB);
     }
 
     private static void demonstrar(Arvore arvore) {
         int[] valores = {9, 1, 2, 8, 2, 3, 10, 15, -5, 7, 12, -2};
         for (int v : valores) {
             arvore.inserir(v);
+            arvore.imprime(ImprimirArvore.DESENHO);
             arvore.inserirAleatorio(-20, 20);
+            arvore.imprime(ImprimirArvore.DESENHO);
         }
 
         System.out.println("Buscar 8: " + arvore.buscar(8));
@@ -25,11 +31,10 @@ public class Main {
         System.out.println("Buscar 2 apos remover: " + arvore.buscar(2));
 
         System.out.println("Desenho:");
-        if (arvore instanceof ArvoreBinaria ab) {
-            ab.imprimeArvore(ImprimirArvore.DESENHO);
-        } else if (arvore instanceof ArvoreAVL avl) {
-            avl.imprimeArvore(ImprimirArvore.DESENHO);
-        }
+
+        arvore.imprime(ImprimirArvore.DESENHO);
         System.out.println();
     }
+
+
 }

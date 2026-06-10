@@ -1,23 +1,10 @@
 package dev.gustavorosa;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
 public class ArvoreAVL implements Arvore {
-
-    private static class NoAVL {
-        int valor;
-        NoAVL esquerdo;
-        NoAVL direito;
-        int altura;
-
-        NoAVL(int valor) {
-            this.valor = valor;
-            this.altura = 1;
-        }
-    }
 
     private NoAVL raiz;
 
@@ -112,6 +99,35 @@ public class ArvoreAVL implements Arvore {
         raiz = remover(raiz, valor);
     }
 
+    @Override
+    public void imprime(ImprimirArvore estrategia) {
+        if (raiz != null) {
+            switch (estrategia) {
+                case EM_ORDEM:
+                    emOrdem(raiz);
+                    break;
+                case PRE_ORDEM:
+                    preOrdem(raiz);
+                    break;
+                case POS_ORDEM:
+                    posOrdem(raiz);
+                    break;
+                case EM_NIVEL:
+                    emNivel(raiz);
+                    break;
+                case DESENHO:
+                    desenhar();
+                    break;
+                default:
+                    System.out.println("Nao conheco esse...");
+            }
+            System.out.println();
+        } else {
+            System.out.println("Arvore vazia");
+            System.out.println();
+        }
+    }
+
     private NoAVL remover(NoAVL no, int valor) {
         if (no == null) return null;
 
@@ -158,34 +174,6 @@ public class ArvoreAVL implements Arvore {
             atual = atual.esquerdo;
         }
         return atual;
-    }
-
-    public void imprimeArvore(ImprimirArvore metodo) {
-        if (raiz != null) {
-            switch (metodo) {
-                case EM_ORDEM:
-                    emOrdem(raiz);
-                    break;
-                case PRE_ORDEM:
-                    preOrdem(raiz);
-                    break;
-                case POS_ORDEM:
-                    posOrdem(raiz);
-                    break;
-                case EM_NIVEL:
-                    emNivel(raiz);
-                    break;
-                case DESENHO:
-                    desenhar();
-                    break;
-                default:
-                    System.out.println("Nao conheco esse...");
-            }
-            System.out.println();
-        } else {
-            System.out.println("Arvore vazia");
-            System.out.println();
-        }
     }
 
     public void desenhar() {
@@ -240,10 +228,6 @@ public class ArvoreAVL implements Arvore {
             }
             System.out.println();
         }
-    }
-
-    public int contagemDeNos() {
-        return contagem(raiz);
     }
 
     private int contagem(NoAVL no) {

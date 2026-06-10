@@ -5,4 +5,5 @@ public interface Arvore {
     void inserirAleatorio(int min, int max);
     boolean buscar(int valor);
     void remover(int valor);
+    void imprime(ImprimirArvore estrategia);
 }
