@@ -72,11 +72,11 @@ public class ArvoreRB implements Arvore {
             pai.direito = novo;
         }
 
-        inserirFixUp(novo);
+        consertarPraCima(novo);
     }
 
-    private void inserirFixUp(NoRB z) {
-        while (isVermelho(z.pai)) {
+    private void consertarPraCima(NoRB z) {
+        while (z.pai != null && isVermelho(z.pai)) {
             NoRB avo = z.pai.pai;
             if (z.pai == avo.esquerdo) {
                 NoRB tio = avo.direito;
